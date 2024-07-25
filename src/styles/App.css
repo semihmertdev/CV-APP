@@ -1,0 +1,37 @@
+.app {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .form-section {
+    width: 45%;
+  }
+  
+  .cv-preview {
+    width: 45%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f4f4f4;
+  }
+  
+  .cv-preview .section {
+    margin-bottom: 20px;
+  }
+  
+  .cv-entry {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .form-section, .cv-preview {
+      width: 100%;
+    }
+  }
+  
