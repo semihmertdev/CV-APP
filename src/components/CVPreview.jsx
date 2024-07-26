@@ -24,43 +24,54 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
 
   const downloadPDF = () => {
     const input = document.getElementById('cv-preview');
-    
-    // html2canvas ile canvas oluşturma
-    html2canvas(input, { scale: 1.5 }).then((canvas) => { // Ölçeklemeyi 1.5 olarak ayarladık
-      const imgData = canvas.toDataURL('image/png', 0.5); // Kaliteyi %50'ye düşürdük
+  
+    // Prompt user for file name
+    const fileName = prompt('Enter the file name for your CV:', 'cv');
+  
+    if (!fileName) {
+      alert('File name cannot be empty.');
+      return;
+    }
+  
+    // Create a canvas with a slightly reduced resolution
+    html2canvas(input, { scale: 1 }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png', 1); // Use PNG format with higher quality
+  
       const pdf = new jsPDF('p', 'mm', 'a4');
-      
-      // PDF sayfa boyutlarını al
+  
+      // PDF page size
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      
-      // Canvas boyutlarını al
+  
+      // Canvas dimensions
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      
-      // Oranı hesapla ve imgScaledHeight'i belirle
+  
+      // Calculate the ratio and scale the height accordingly
       const ratio = imgWidth / pdfWidth;
       const imgScaledHeight = imgHeight / ratio;
-      
+  
       let heightLeft = imgScaledHeight;
       let position = 0;
-      
-      // İlk sayfayı ekle
+  
+      // Add the first page
       pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgScaledHeight);
       heightLeft -= pdfHeight;
-      
-      // Sayfa eklemeye devam et
+  
+      // Add additional pages if needed
       while (heightLeft >= 0) {
         position = heightLeft - imgScaledHeight;
         pdf.addPage();
         pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgScaledHeight);
         heightLeft -= pdfHeight;
       }
-      
-      // PDF dosyasını kaydet
-      pdf.save('cv.pdf');
+  
+      // Save the PDF with the user-defined file name
+      pdf.save(`${fileName}.pdf`);
     });
   };
+  
+  
   
 
   return (
@@ -127,7 +138,9 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
 
         {education && education.length > 0 && (
           <div className="cv-section">
+            <div className="h3">
             <h3>Educational Experience</h3>
+            </div>
             {education.map((edu, index) => (
               <div key={index} className="cv-entry">
                 <div className="cv-entry-details">
@@ -158,7 +171,9 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
 
         {experience && experience.length > 0 && (
           <div className="cv-section">
+            <div className="h3">
             <h3>Practical Experience</h3>
+            </div>
             {experience.map((exp, index) => (
               <div key={index} className="cv-entry">
                 <div className="cv-entry-details">
@@ -189,7 +204,9 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
 
         {courses && courses.length > 0 && (
           <div className="cv-section">
+            <div className="h3">
             <h3>Courses and Certificates</h3>
+            </div>
             {courses.map((course, index) => (
               <div key={index} className="cv-entry">
                 <div className="cv-entry-details">
@@ -212,7 +229,9 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
 
         {skills && skills.length > 0 && (
           <div className="cv-section">
+            <div className="h3">
             <h3>Skills</h3>
+            </div>
             <ul>
               {skills.map((skill, index) => (
                 <li key={index}>{skill}</li>
@@ -222,7 +241,7 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
         )}
       </div>
       <div className="download-btn">
-      <button onClick={downloadPDF}>Download as PDF</button>
+      <button onClick={downloadPDF}>Download</button>
       </div>
     </div>
   );
