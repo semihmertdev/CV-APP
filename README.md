@@ -1,8 +1,25 @@
-# React + Vite
+# CV APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CV APP is a React-based web application that allows users to create and customize their curriculum vitae (CV) easily. Users can input their personal information, education, work experience, skills, and courses/certificates, and then generate a professionally formatted CV.
 
-Currently, two official plugins are available:
+## Live Preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Check out the live version of the CV APP here: [CV APP Live Preview](https://chipper-croquembouche-52afdf.netlify.app/)
+
+## Features
+
+- User-friendly interface for inputting CV information
+- Sections for personal details, education, work experience, skills, and courses/certificates
+- Real-time preview of the CV
+- Ability to edit and delete entries
+- Download CV as a PDF
+
+## Technologies Used
+
+- React.js
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- react-icons for icons
+- html2canvas and jsPDF for PDF generation
+- Netlify for deployment
