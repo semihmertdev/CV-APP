@@ -1,37 +1,143 @@
+/* Global Styles */
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Add accessible line-height */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-color: #F0EEEB;
+  font-family: Arial, sans-serif; /* Adding a font family for better typography */
+}
+
+/* 4. Improve text rendering */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 5. Remove built-in form typography styles */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 6. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 7. Create a root stacking context */
+#root, #__next {
+  isolation: isolate;
+}
+
+/* Layout Styles */
 .app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  gap: 20px; /* Add space between grid items */
+  margin: 0 50px;
+}
+
+
+label {
+  font-weight: 600; /* Slightly lighter weight */
+  margin-bottom: 6px; /* Consistent spacing */
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 8px; /* Consistent padding */
+  margin-bottom: 12px; /* Consistent spacing */
+  border: 1px solid #e0e0e0; /* Consistent border color */
+  border-radius: 4px; /* Consistent border radius */
+}
+
+/* Tabs section */
+.tabs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* CV Preview section */
+.cv-preview {
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+}
+
+/* CV Sections */
+.cv-section {
+  margin: 0;
+  list-style-type: none;
+}
+
+/* Heading Styles */
+h3 {
+  background-color: gainsboro;
+  padding: 10px; /* Add padding for better spacing */
+}
+
+/* Button Styles */
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button{
+  padding: 10px 20px;
+  border: 2px solid #535bf2;
+  border-radius: 5px;
+  background-color: #646cff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #535bf2;
+  border: 2px solid black;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 100px;
+}
+
+
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .radio-group {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
   }
-  
-  .form-section {
-    width: 45%;
+}
+
+@media (max-width: 768px) {
+  .app {
+    display: flex;
+    flex-direction: column;
   }
-  
-  .cv-preview {
-    width: 45%;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #f4f4f4;
-  }
-  
-  .cv-preview .section {
-    margin-bottom: 20px;
-  }
-  
-  .cv-entry {
-    margin-bottom: 10px;
-    padding: 10px;
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  @media (max-width: 768px) {
-    .form-section, .cv-preview {
-      width: 100%;
-    }
-  }
-  
+}
+

@@ -1,168 +1,214 @@
 import React, { useState } from 'react';
 import '../styles/EducationalExperience.css';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 const EducationalExperience = ({ education, setEducation }) => {
-  const [newEducation, setNewEducation] = useState({
-    schoolName: '',
-    titleOfStudy: '',
-    dateOfStudy: '',
-    location: '',
+  const [edu, setEdu] = useState({
+    degree: '',
+    institution: '',
+    country: '',
+    startDate: '',
+    endDate: '',
     description: '',
   });
-  const [errors, setErrors] = useState({});
-  const [editMode, setEditMode] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
+
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [showEducation, setShowEducation] = useState(false);
+  const [errors, setErrors] = useState({
+    startDate: '',
+    endDate: '',
+  });
+
+  const months = [
+    { value: '01', label: 'January' }, { value: '02', label: 'February' },
+    { value: '03', label: 'March' }, { value: '04', label: 'April' },
+    { value: '05', label: 'May' }, { value: '06', label: 'June' },
+    { value: '07', label: 'July' }, { value: '08', label: 'August' },
+    { value: '09', label: 'September' }, { value: '10', label: 'October' },
+    { value: '11', label: 'November' }, { value: '12', label: 'December' }
+  ];
+
+  const formatDate = (date) => {
+    if (!date) return '';
+    const [month, year] = date.split('/');
+    const monthName = months.find(m => m.value === month)?.label || '';
+    return `${monthName} ${year}`;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewEducation((prevEducation) => ({
-      ...prevEducation,
-      [name]: value,
-    }));
 
-    validateField(name, value);
-  };
+    if (name === 'startDate' || name === 'endDate') {
+      // Remove non-numeric characters and handle automatic insertion of '/'
+      let formattedValue = value.replace(/[^0-9]/g, '');
+      if (formattedValue.length > 2) {
+        formattedValue = formattedValue.slice(0, 2) + '/' + formattedValue.slice(2, 6);
+      }
 
-  const validateField = (name, value) => {
-    let errorMsg = '';
+      setEdu({ ...edu, [name]: formattedValue });
 
-    switch (name) {
-      case 'schoolName':
-        if (!value.trim()) {
-          errorMsg = 'School name is required';
-        }
-        break;
-      case 'titleOfStudy':
-        if (!value.trim()) {
-          errorMsg = 'Title of study is required';
-        }
-        break;
-      case 'dateOfStudy':
-        if (!value.trim()) {
-          errorMsg = 'Date of study is required';
-        }
-        break;
-      case 'location':
-        if (!value.trim()) {
-          errorMsg = 'Location is required';
-        }
-        break;
-      case 'description':
-        if (!value.trim()) {
-          errorMsg = 'Description is required';
-        }
-        break;
-      default:
-        break;
-    }
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: errorMsg,
-    }));
-  };
-
-  const handleSave = () => {
-    const isValid = Object.values(newEducation).every((value) => value.trim()) && Object.values(errors).every((error) => !error);
-    if (!isValid) {
-      return;
-    }
-
-    if (editMode) {
-      setEducation((prevEducation) => {
-        const updatedEducation = [...prevEducation];
-        updatedEducation[editIndex] = newEducation;
-        return updatedEducation;
-      });
-      setEditMode(false);
-      setEditIndex(null);
+      // Validate month and year
+      const [month, year] = formattedValue.split('/');
+      if (month && (month < 1 || month > 12)) {
+        setErrors({ ...errors, [name]: 'Month must be between 01 and 12' });
+      } else if (year && (year.length !== 4 || isNaN(year))) {
+        setErrors({ ...errors, [name]: 'Year must be a four-digit number' });
+      } else {
+        setErrors({ ...errors, [name]: '' });
+      }
     } else {
-      setEducation((prevEducation) => [...prevEducation, newEducation]);
+      setEdu({ ...edu, [name]: value });
     }
+  };
 
-    setNewEducation({
-      schoolName: '',
-      titleOfStudy: '',
-      dateOfStudy: '',
-      location: '',
-      description: '',
-    });
+  const handleAddOrUpdateEdu = () => {
+    if (
+      edu.degree &&
+      edu.institution &&
+      edu.country &&
+      edu.startDate &&
+      edu.endDate &&
+      !errors.startDate &&
+      !errors.endDate
+    ) {
+      if (editingIndex !== null) {
+        const updatedEducation = [...education];
+        updatedEducation[editingIndex] = edu;
+        setEducation(updatedEducation);
+        setEditingIndex(null);
+      } else {
+        setEducation([...education, edu]);
+      }
+      setEdu({
+        degree: '',
+        institution: '',
+        country: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+      });
+    }
   };
 
   const handleEdit = (index) => {
-    setEditMode(true);
-    setEditIndex(index);
-    setNewEducation(education[index]);
+    setEdu(education[index]);
+    setEditingIndex(index);
   };
 
   const handleDelete = (index) => {
-    setEducation((prevEducation) => prevEducation.filter((_, i) => i !== index));
+    const newEducation = education.filter((_, i) => i !== index);
+    setEducation(newEducation);
+    if (editingIndex === index) {
+      setEditingIndex(null);
+      setEdu({
+        degree: '',
+        institution: '',
+        country: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+      });
+    }
   };
 
   return (
-    <div className="education">
-      <h2>Educational Experience</h2>
-      <div className="input-section">
-        <input
-          type="text"
-          name="schoolName"
-          placeholder="School Name"
-          value={newEducation.schoolName}
-          onChange={handleChange}
-        />
-        {errors.schoolName && <p className="error">{errors.schoolName}</p>}
-        <input
-          type="text"
-          name="titleOfStudy"
-          placeholder="Title of Study"
-          value={newEducation.titleOfStudy}
-          onChange={handleChange}
-        />
-        {errors.titleOfStudy && <p className="error">{errors.titleOfStudy}</p>}
-        <input
-          type="text"
-          name="dateOfStudy"
-          placeholder="Date of Study"
-          value={newEducation.dateOfStudy}
-          onChange={handleChange}
-        />
-        {errors.dateOfStudy && <p className="error">{errors.dateOfStudy}</p>}
-        <input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={newEducation.location}
-          onChange={handleChange}
-        />
-        {errors.location && <p className="error">{errors.location}</p>}
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={newEducation.description}
-          onChange={handleChange}
-        ></textarea>
-        {errors.description && <p className="error">{errors.description}</p>}
-        <div className="entry-actions">
-          <button onClick={handleSave}>{editMode ? 'Update' : 'Save'}</button>
+    <div className="educational-experience">
+      <form>
+        <label>
+          Degree:
+          <input
+            type="text"
+            name="degree"
+            value={edu.degree}
+            onChange={handleChange}
+            placeholder="Enter degree"
+          />
+        </label>
+        <label>
+          Institution:
+          <input
+            type="text"
+            name="institution"
+            value={edu.institution}
+            onChange={handleChange}
+            placeholder="Enter institution"
+          />
+        </label>
+        <label>
+          Country:
+          <input
+            type="text"
+            name="country"
+            value={edu.country}
+            onChange={handleChange}
+            placeholder="Enter country"
+          />
+        </label>
+
+        <label>
+          Start Date (MM/YYYY):
+          <input
+            type="text"
+            name="startDate"
+            value={edu.startDate}
+            onChange={handleChange}
+            placeholder="MM/YYYY"
+            maxLength="7"
+          />
+          {errors.startDate && <p className="error">{errors.startDate}</p>}
+        </label>
+
+        <label>
+          End Date (MM/YYYY):
+          <input
+            type="text"
+            name="endDate"
+            value={edu.endDate}
+            onChange={handleChange}
+            placeholder="MM/YYYY"
+            maxLength="7"
+          />
+          {errors.endDate && <p className="error">{errors.endDate}</p>}
+        </label>
+
+        <label>
+          Description:
+          <textarea
+            name="description"
+            value={edu.description}
+            onChange={handleChange}
+            placeholder="Enter description"
+          />
+        </label>
+        <div className="buttons">
+          <button type="button" onClick={handleAddOrUpdateEdu}>
+            {editingIndex !== null ? 'Update Education' : 'Add Education'}
+          </button>
+          <button type="button" onClick={() => setShowEducation(!showEducation)}>
+            {showEducation ? 'Hide Education' : 'Show Education'}
+          </button>
         </div>
-      </div>
-      <div className="existing-entries">
-        {education.map((item, index) => (
-          <div key={index} className="education-item">
-            <div>
-              <p>School: {item.schoolName}</p>
-              <p>Title of Study: {item.titleOfStudy}</p>
-              <p>Date of Study: {item.dateOfStudy}</p>
-              <p>Location: {item.location}</p>
-              <p>Description: {item.description}</p>
+      </form>
+      {showEducation && (
+        <div className="education-list">
+          {education.map((edu, index) => (
+            <div key={index} className="education-entry">
+              <div className="entry-content">
+                <p><strong>Degree:</strong> {edu.degree}</p>
+                <p><strong>Institution:</strong> {edu.institution}</p>
+                <p><strong>Country:</strong> {edu.country}</p>
+                <p><strong>Start Date:</strong> {formatDate(edu.startDate)}</p>
+                <p><strong>End Date:</strong> {formatDate(edu.endDate)}</p>
+                <p><strong>Description:</strong> {edu.description}</p>
+              </div>
+              <div className="entry-buttons">
+                <button onClick={() => handleEdit(index)}><FaEdit /></button>
+                <button onClick={() => handleDelete(index)}><FaTrashAlt /></button>
+              </div>
             </div>
-            <div className="entry-actions">
-              <button onClick={() => handleEdit(index)}>Edit</button>
-              <button onClick={() => handleDelete(index)}>Delete</button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

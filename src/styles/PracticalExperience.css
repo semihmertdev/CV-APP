@@ -1,68 +1,99 @@
 .practical-experience {
-    background: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  .practical-experience h2 {
-    margin-bottom: 15px;
-  }
-  
-  .practical-experience .input-section {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .practical-experience input,
-  .practical-experience textarea {
-    margin: 10px 0;
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .practical-experience .entry-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .practical-experience .entry-actions button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .practical-experience .entry-actions button:hover {
-    background-color: #0056b3;
-  }
-  
-  .practical-experience .existing-entries {
-    margin-top: 20px;
-  }
-  
-  .practical-experience .experience-item {
-    padding: 10px;
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  
-  .practical-experience .experience-item .entry-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.8em;
-  }
-  
+  padding: 20px;
+}
+
+.practical-experience form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.practical-experience label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.practical-experience input,
+.practical-experience textarea {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.practical-experience textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.practical-experience .buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: 2px solid #535bf2;
+  border-radius: 5px;
+  background-color: #646cff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #535bf2;
+  border: 2px solid black;
+}
+
+.practical-experience .error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.experience-list {
+  margin-top: 20px;
+}
+
+.experience-entry {
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between; /* Align items to both ends */
+}
+
+.entry-content {
+  flex: 1; /* Takes up remaining space */
+  display: flex;
+  gap: 5px;
+}
+
+.entry-content p {
+  margin: 0;
+}
+
+.entry-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.entry-buttons button {
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 24px; /* Increase icon size */
+  color: #646cff; /* Icon color */
+}
+
+.entry-buttons button:hover {
+  color: #535bf2; /* Change color on hover */
+}

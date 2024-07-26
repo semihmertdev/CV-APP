@@ -1,37 +1,64 @@
-.general-info {
-    background: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  .general-info h2 {
-    margin-bottom: 15px;
-  }
-  
-  .general-info input,
-  .general-info button {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .general-info button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .general-info button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.8em;
-  }
-  
+.general-info{
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.general-info p{
+  display: flex;
+  justify-content: center;
+}
+
+.general-info .radio-group{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 10px;
+}
+
+.general-info input{
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.link-entry{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  color: black;
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.link-details{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.link-details a{
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-details a:hover{
+  color: blue;
+}
+
+.link-details svg{
+  cursor: pointer;
+  width: 24px;
+  height: 32px;
+}
+
+.link-details svg:hover{
+  color: blue;
+}

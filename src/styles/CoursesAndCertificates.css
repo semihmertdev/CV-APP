@@ -1,22 +1,21 @@
-.educational-experience {
+.courses-and-certificates {
     padding: 20px;
   }
   
-  .educational-experience form {
+  .courses-and-certificates form {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   
-  .educational-experience label {
+  .courses-and-certificates label {
     display: flex;
     flex-direction: column;
     font-weight: bold;
     margin-bottom: 10px;
   }
   
-  .educational-experience input,
-  .educational-experience textarea {
+  .courses-and-certificates input {
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #e0e0e0;
@@ -24,12 +23,7 @@
     font-size: 16px;
   }
   
-  .educational-experience textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  .educational-experience .buttons {
+  .courses-and-certificates .buttons {
     display: flex;
     gap: 10px;
     margin-top: 10px;
@@ -50,17 +44,17 @@
     border: 2px solid black;
   }
   
-  .educational-experience .error {
+  .courses-and-certificates .error {
     color: red;
     font-size: 14px;
     margin-top: 5px;
   }
   
-  .education-list {
+  .course-list {
     margin-top: 20px;
   }
   
-  .education-entry {
+  .course-entry {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,22 +65,22 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .education-entry .entry-content {
-    display: flex; 
-    overflow: hidden;
+  .course-entry .entry-content {
+    display: flex;
+    flex-direction: column;
     gap: 5px;
   }
   
-  .education-entry .entry-content p {
+  .course-entry .entry-content p {
     margin: 0;
   }
   
-  .education-entry .entry-buttons {
+  .course-entry .entry-buttons {
     display: flex;
     gap: 5px;
   }
   
-  .education-entry .entry-buttons button {
+  .course-entry .entry-buttons button {
     padding: 10px 20px;
     border: 2px solid #535bf2;
     border-radius: 5px;
@@ -96,13 +90,8 @@
     cursor: pointer;
   }
   
-  .education-entry .entry-buttons button:hover {
+  .course-entry .entry-buttons button:hover {
     background-color: #535bf2;
     border: 2px solid black;
   }
   
-  .entry-content {
-    flex: 1; /* Takes up remaining space */
-    display: flex;
-    gap: 5px;
-  }
