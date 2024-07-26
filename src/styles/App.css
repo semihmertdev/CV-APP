@@ -85,11 +85,6 @@ input {
   list-style-type: none;
 }
 
-/* Heading Styles */
-h3 {
-  background-color: gainsboro;
-  padding: 10px; /* Add padding for better spacing */
-}
 
 /* Button Styles */
 
@@ -99,20 +94,7 @@ h3 {
   gap: 15px;
 }
 
-button{
-  padding: 10px 20px;
-  border: 2px solid #535bf2;
-  border-radius: 5px;
-  background-color: #646cff;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
 
-button:hover {
-  background-color: #535bf2;
-  border: 2px solid black;
-}
 
 .radio-group {
   display: flex;
@@ -141,3 +123,49 @@ button:hover {
   }
 }
 
+
+
+.entr-buttons {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #646cff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-color: #646cff; /* Primary background color */
+  color: white; /* Primary text color */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s, color 0.3s; /* Smooth transitions for hover effects */
+}
+
+button:hover {
+  background-color: white; /* Background color on hover */
+  color: #646cff; /* Text color on hover */
+  border: 2px solid #646cff; /* Border color on hover */
+}
+
+/* Entr-buttons Class */
+.entr-buttons {
+  background-color: #646cff; /* Primary button color */
+  color: white; /* Primary button text color */
+}
+
+/* Link-entry Button Class */
+.link-entry button {
+  background-color: white; /* Default button color */
+  color: #535bf2; /* Default button text color */
+}
+
+.link-entry button:hover {
+  background-color: white; /* Keep background color on hover */
+  color: #535bf2; /* Text color on hover */
+  border: 2px solid #535bf2; /* Border color on hover */
+} 

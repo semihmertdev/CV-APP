@@ -30,7 +30,7 @@
   align-items: center;
   margin-top: 20px;
   color: black;
-  background-color: #e0e0e0;
+  background-color: white;
   padding: 10px;
   border-radius: 10px;
 }
@@ -61,4 +61,19 @@
 
 .link-details svg:hover{
   color: blue;
+}
+
+.link-entry button{
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-color: white;
+  color: #535bf2;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link-entry button:hover{
+  border: 2px solid #535bf2;
+  background-color: white;
 }
