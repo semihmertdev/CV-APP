@@ -15,7 +15,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background-color: #F0EEEB;
-  font-family: Arial, sans-serif; /* Adding a font family for better typography */
+  font-family: Roboto, sans-serif;
 }
 
 /* 4. Improve text rendering */

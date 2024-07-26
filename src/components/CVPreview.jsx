@@ -139,7 +139,7 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
         {education && education.length > 0 && (
           <div className="cv-section">
             <div className="h3">
-            <h3>Educational Experience</h3>
+            <h3>Education</h3>
             </div>
             {education.map((edu, index) => (
               <div key={index} className="cv-entry">
@@ -172,7 +172,7 @@ const CVPreview = ({ generalInfo, education, experience, courses, skills }) => {
         {experience && experience.length > 0 && (
           <div className="cv-section">
             <div className="h3">
-            <h3>Practical Experience</h3>
+            <h3>Professional Experience</h3>
             </div>
             {experience.map((exp, index) => (
               <div key={index} className="cv-entry">
